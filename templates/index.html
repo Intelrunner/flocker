@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <title>Homepage / Auth</title>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Testing</h1>
+  <h2>Datastore and Firebase Auth Example</h2>
+
+  <h3>Last 10 visits</h3>
+  {% for time in times %}
+    <p>{{ time }}</p>
+  {% endfor %}
+
+</body>
+</html>
