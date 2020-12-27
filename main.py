@@ -11,8 +11,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
+    x = uuid.uuid1()
     """Return a friendly greeting"""
-    return 'Hello World!'
+    return 'Hello World! \n\
+        {}'.format(str(x))
+
+
+@app.route('/test')
+def hello2():
+    return render_template('index.html')
 
 
 @app.errorhandler(500)
