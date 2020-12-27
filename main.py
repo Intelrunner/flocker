@@ -25,10 +25,11 @@ def fetch_times():
     return query
 
 
-@app.route('/writetimes')
+@app.route('/fetchtimes')
 def root():
-    query = db.collection(u'times').order_by(u'timestamps').limit(10).stream
-    return render_template('index.html', times=query)
+    fetchtimes = db.collection(u'times').order_by(u'timestamps').limit(
+        10).stream
+    return render_template('index.html', times=fetchtimes)
 
 
 @app.route('/')
