@@ -1,3 +1,4 @@
-flask
+Flask
 firebase_admin
+flask-wtf
 

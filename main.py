@@ -14,7 +14,26 @@ firebase_admin.initialize_app(cred, {'projectId': 'eric-playground-298616'})
 
 
 def get_collection():
+    collection = 'users'
+    x = uuid.uuid1()
     db = firestore.Client()
+    doc_ref = db.collection(collection).document(str(x))
+    z = uuid.uuid1()
+    doc_ref.set({'name': str(z)})
+
+
+class MyClass:
+    """An Amazing test class. For demonstrating how awesome python classes are"""
+    def method(self):
+        return 'instance method called', self
+
+    @classmethod
+    def classmethod(cls):
+        return 'class method called', cls
+
+    @staticmethod
+    def staticmethod():
+        return 'static method called'
 
 
 app = Flask(__name__)
@@ -33,12 +52,18 @@ def html_test():
     return render_template('index.html')
 
 
+@app.route('/addrecord')
+def add_record():
+    return get_collection()
+
+
 @app.route('/result')
 def result():
     dict = {'phy': 50, 'che': 60, 'maths': 70}
     return render_template('results.html', result=dict)
 
 
+@app.route('/classtest')
 @app.errorhandler(500)
 def server_error(e):
     logging.exception('An error did some shit')
