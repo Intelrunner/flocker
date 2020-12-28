@@ -1,10 +1,21 @@
 # Outcome: load simple webpage
-import datetime
 from flask import Flask, render_template
-from google.cloud import firestore
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 import datetime
 import uuid
 import logging
+
+### firebase init ####
+cred = credentials.ApplicationDefault()
+
+firebase_admin.initialize_app(cred, {'projectId': 'eric-playground-298616'})
+
+
+def get_collection():
+    db = firestore.Client()
+
 
 app = Flask(__name__)
 
@@ -18,8 +29,14 @@ def hello():
 
 
 @app.route('/test')
-def hello2():
+def html_test():
     return render_template('index.html')
+
+
+@app.route('/result')
+def result():
+    dict = {'phy': 50, 'che': 60, 'maths': 70}
+    return render_template('results.html', result=dict)
 
 
 @app.errorhandler(500)
@@ -35,4 +52,4 @@ if __name__ == '__main__':
     # We use this shit when it runs locally
     # In a 'development' fashion
     # Gunicorn is the standard app server for app engine
-    app.run(host='127.0.0.1', post=8080, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True)

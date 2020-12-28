@@ -10,10 +10,20 @@
     <h1>Testing</h1>
   <h2>Datastore and Firebase Auth Example</h2>
 
+  <form>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname">
+</form>
+
   <h3>Last 10 visits</h3>
   {% for time in times %}
     <p>{{ time }}</p>
   {% endfor %}
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 
 </body>
 </html>
