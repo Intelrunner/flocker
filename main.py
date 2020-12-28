@@ -54,7 +54,12 @@ def html_test():
 
 @app.route('/addrecord')
 def add_record():
-    return get_collection()
+    collection = 'users'
+    x = uuid.uuid1()
+    db = firestore.Client()
+    doc_ref = db.collection(collection).document(str(x))
+    z = uuid.uuid1()
+    return doc_ref.set({'name': str(z)})
 
 
 @app.route('/result')
